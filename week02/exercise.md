@@ -20,7 +20,7 @@ A question, instead, is made of:
 Define a constructor function `Question` to represent a question. Implement the following methods to manipulate its answers: 
 
 - `add(answer)` // pass a fully-constructed `Answer` object
-- `findAll(name)` // returns all the Answers of a given person
+- `find(name)` // returns all the Answers of a given person
 - `afterDate(date)` // returns an array of Answers after the given date
 - `listByDate()` // returns an array of Answers, sorted by increasing date
 - `listByScore()` // idem, by decreasing score
