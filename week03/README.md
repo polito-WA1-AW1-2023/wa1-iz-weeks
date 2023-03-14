@@ -6,4 +6,4 @@ Folder `asynch-examples` contains the examples discussed during the first part o
 
 ## Exercise4
 
-Folder `exercise4` contains the exercises and the examples made during the lectures of the course.
+Folder `exercise4` contains the examples discussed during the second part of the lecture.
