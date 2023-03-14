@@ -1,0 +1,15 @@
+{
+  "name": "exercise4",
+  "version": "1.0.0",
+  "description": "This is the first exercise about async callbacks",
+  "main": "qa.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luca Mannella",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.7",
+    "sqlite3": "^5.1.5"
+  }
+}
