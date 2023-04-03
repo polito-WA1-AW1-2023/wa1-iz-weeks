@@ -10,7 +10,7 @@ Note: use the export/import syntax to access the constructor functions.
 
 ## Defining the component tree
 
-Starting from the screen of the "HeapOverrun" question page (see Exercise 6), make a list of the components that you need to recreate the page.
+Starting from the screen of the "HeapOverrun" question page (see Exercises 5-6), make a list of the components that you need to recreate the page.
 
 For each component, list the information (`prop`s) that are required by that component (and/or by any other enclosed component).
 
