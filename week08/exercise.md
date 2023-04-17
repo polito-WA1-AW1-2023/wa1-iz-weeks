@@ -6,9 +6,11 @@ _Goal: Managing forms and related states in the "HeapOverrun" React app develope
 
 Starting from the form defined in the previous exercise, handle the insertion of a new answer in the table. Use the defined state to perform this operation.
 
-## To state or not to state
+## To use state or not to use state
 
-Make the entire form appear and disappear through a suitable button at the end of the table. Do you need a new state? Why (not)?
+Make the entire form appear and disappear through a suitable button at the end of the table. Do you need a new state?
+
+Now, sort the table content by clicking on the "Score" header. For simplicity, a first click will sort the table from the lowest value to the highest and a second click from the highest to the lowest. Do you need a new state?
 
 ## Edit an answer
 
