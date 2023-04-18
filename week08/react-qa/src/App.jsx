@@ -30,12 +30,28 @@ function App() {
     });
   }
 
+  const addAnswer = (answer) => {
+    setAnswers((oldAnswers) => [...oldAnswers, answer]);
+  }
+
+  const updateAnswer = (answer) => {
+    setAnswers(oldAnswer => {
+      return oldAnswer.map((ans) => {
+        if(ans.id === answer.id) {
+          return new Answer(answer.id, answer.text, answer.name, answer.date, answer.score);
+        }
+        else
+          return ans;
+      });
+    });
+  }
+
   return (
     <>
       <NavHeader questionNum={question.id} />
       <Container fluid className="mt-3">
         <QuestionDescription question={question} />
-        <Answers answers={answers} voteUp={voteUp}></Answers>
+        <Answers answers={answers} voteUp={voteUp} addAnswer={addAnswer} updateAnswer={updateAnswer}></Answers>
       </Container>
     </>
     
