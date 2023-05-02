@@ -56,6 +56,13 @@ function App() {
   return (
     <BrowserRouter>
         <Routes>
+          {/* 
+          - / (index) -> all the questions
+          - /questions/:questionId -> the page with the :questionId question info and its answers
+          - /questions/:questionId/addAnswer -> the form to add a new answer
+          - /questions/:questionId/editAnswer/:answerId -> the form to update the :answerId answer
+          - * -> not found
+          */}
           <Route element={
             <>
               <NavHeader questions={questions}/>
