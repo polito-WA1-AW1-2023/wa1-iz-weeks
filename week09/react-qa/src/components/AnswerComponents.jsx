@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { Row, Col, Table, Button } from 'react-bootstrap';
-import AnswerForm from './AnswerForm';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Answers(props) {
   return (
@@ -52,18 +52,7 @@ function AnswerTable(props) {
         </tbody>
       </Table>
 
-      { /* Assumption: the last id will be in the last item in the array */}
-      { showForm ? 
-          <AnswerForm 
-            key={editableAnswer ? editableAnswer.id : -1} 
-            lastId={props.answers.slice(-1)[0].id} 
-            answer={editableAnswer} 
-            addAnswer={(answer) => {props.addAnswer(answer); setShowForm(false);}} 
-            cancel={() => setShowForm(false)} 
-            updateAnswer={(answer) => {props.updateAnswer(answer); setShowForm(false);}}
-          /> 
-        : 
-          <Button variant="success" onClick={() => { setShowForm(true); setEditableAnswer(); }}>Add</Button>}
+      <Link to="addAnswer" className="btn btn-success">Add</Link>
     </>
   );
 }
