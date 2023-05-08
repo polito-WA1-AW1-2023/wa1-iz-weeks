@@ -20,4 +20,4 @@ function Question(id, text, author, date) {
   this.date = dayjs(date);
 }
 
-export { Question, Answer };
+module.exports = { Question, Answer };

@@ -12,7 +12,7 @@ const db = new sqlite.Database('questions.sqlite', (err) => {
 // get all the questions
 exports.listQuestions = () => {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM questions';
+    const sql = 'SELECT * FROM question';
     db.all(sql, [], (err, rows) => {
       if (err) {
         reject(err);
@@ -56,7 +56,7 @@ exports.addQuestion = (question) => {
 // get all the answer of a given question
 exports.listAnswersOf = (questionId) => {
   return new Promise((resolve, reject) => {
-    const sql = 'SELECT * FROM answers WHERE questionId = ?';
+    const sql = 'SELECT * FROM answer WHERE questionId = ?';
     db.all(sql, [questionId], (err, rows) => {
       if (err) {
         reject(err);
@@ -70,7 +70,7 @@ exports.listAnswersOf = (questionId) => {
 // add a new answer
 exports.addAnswer = (answer) => {
   return new Promise ((resolve, reject) => {
-    const sql = 'INSERT INTO answers(text, author, date, score, questionId) VALUES (?, ?, DATE(?), ?, ?)';
+    const sql = 'INSERT INTO answer(text, author, date, score, questionId) VALUES (?, ?, DATE(?), ?, ?)';
     db.run(sql, [answer.text, answer.author, answer.date, answer.score, answer.questionId], function(err) {
       if(err) reject(err);
       else resolve(this.lastID);
