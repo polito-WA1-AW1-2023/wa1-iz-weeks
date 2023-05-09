@@ -85,5 +85,12 @@ exports.updateAnswer = (answer) => {
 
 // vote for an answer
 exports.voteAnswer = (answerId, vote) => {
-  // write something clever
+  return new Promise ((resolve, reject) => {
+    const delta = vote === 'upvote' ? 1: -1;
+    const sql = 'UPDATE answer SET score = score + ? WHERE id = ?';
+    db.run(sql, [delta, answerId], function(err) {
+      if(err) reject(err);
+      resolve(this.changes);
+    });
+  });
 }
