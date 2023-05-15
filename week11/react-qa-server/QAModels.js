@@ -4,10 +4,10 @@
 
 const dayjs = require('dayjs');
 
-function Answer(id, text, name, date, score=0) {
+function Answer(id, text, author, date, score=0) {
   this.id = id;
   this.text = text;
-  this.name = name;
+  this.author = author;
   this.score = score;
   this.date = dayjs(date);
 }

@@ -61,17 +61,17 @@ exports.listAnswersOf = (questionId) => {
       if (err) {
         reject(err);
       }
-      const answers = rows.map((a) => new Answer(a.id, a.text, a.name, a.date, a.questionId, a.score));
+      const answers = rows.map((a) => new Answer(a.id, a.text, a.author, a.date, a.score));
       resolve(answers);
     });
   });
 };
 
 // add a new answer
-exports.addAnswer = (answer) => {
+exports.addAnswer = (answer, questionId) => {
   return new Promise ((resolve, reject) => {
     const sql = 'INSERT INTO answer(text, author, date, score, questionId) VALUES (?, ?, DATE(?), ?, ?)';
-    db.run(sql, [answer.text, answer.author, answer.date, answer.score, answer.questionId], function(err) {
+    db.run(sql, [answer.text, answer.author, answer.date, answer.score, questionId], function(err) {
       if(err) reject(err);
       else resolve(this.lastID);
     });
