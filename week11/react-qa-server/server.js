@@ -4,6 +4,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const {check, validationResult} = require('express-validator');
+const cors = require('cors');
 const dao = require('./dao');
 
 // init
@@ -13,6 +14,11 @@ const port = 3001;
 // set up middlewares
 app.use(express.json());
 app.use(morgan('dev'));
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 /* ROUTES*/
 // GET /api/questions
