@@ -2,12 +2,11 @@
 
 import dayjs from 'dayjs';
 
-function Answer(id, text, name, date, questionId, score=0) {
+function Answer(id, text, name, date, score=0) {
   this.id = id;
   this.text = text;
   this.name = name;
   this.score = score;
-  this.questionId = questionId;
   this.date = dayjs(date);
 
   /* Method to enable the proper serialization to string of the dayjs object. 

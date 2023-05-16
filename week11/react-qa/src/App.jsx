@@ -6,36 +6,22 @@ import NavHeader from './components/NavbarComponents';
 import NotFound from './components/NotFoundComponent';
 import AnswerForm from './components/AnswerForm';
 import QuestionList from './components/QuestionListComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-
-const fakeQuestions = new Array(
-  new Question(1, 'Is JavaScript better than Python?', 'Luigi De Russis', '2023-02-07'),
-  new Question(2, 'How many students does WA1 have?', 'Luca Mannella', '2023-02-15')
-);
-
-const fakeAnswers = new Array(
-  new Answer(1, 'Yes', 'Luca Mannella', '2023-02-15', 1, -10),
-  new Answer(2, 'Not in a million year', 'Guido van Rossum', '2023-03-02', 1, 5),
-  new Answer(3, 'No', 'Luigi De Russis', '2023-03-02', 1, 10),
-  new Answer(4, 'Both have their pros and cons', 'Mario Rossi', '2023-03-04', 1));
+import API from './API';
 
 function App() {
-  const [questions, setQuestions] = useState(fakeQuestions);
-  const [answers, setAnswers] = useState(fakeAnswers);
+  const [questions, setQuestions] = useState([]);
+  const [answers, setAnswers] = useState([]);
 
-  const voteUp = (answerId) => {
-    setAnswers(oldAnswer => {
-      return oldAnswer.map((ans) => {
-        if(ans.id === answerId) {
-          // return the "updated" answer
-          return new Answer(ans.id, ans.text, ans.name, ans.date, ans.questionId, ans.score +1);
-        }
-        else
-          return ans;
-      });
-    });
-  }
+  useEffect(()=> {
+    // get all the questions from API
+    const getQuestions = async () => {
+      const questions = await API.getQuestions();
+      setQuestions(questions);
+    }
+    getQuestions();
+  }, []);
 
   const addAnswer = (answer) => {
     setAnswers((oldAnswers) => [...oldAnswers, answer]);
@@ -73,7 +59,7 @@ function App() {
             <Route index 
               element={ <QuestionList questions={questions}/> } />
             <Route path='questions/:questionId' 
-              element={<SingleQuestion questions={questions} answers={answers} voteUp={voteUp}/> } />
+              element={<SingleQuestion questions={questions}/> } />
             <Route path='questions/:questionId/addAnswer' 
               element={<AnswerForm addAnswer={addAnswer} lastId={Math.max(...answers.map(ans => ans.id))}/>} />
             <Route path='questions/:questionId/editAnswer/:answerId' 
