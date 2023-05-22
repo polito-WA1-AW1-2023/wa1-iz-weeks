@@ -1,4 +1,4 @@
-import { Answer, Question } from "./QAModels";
+import { Answer, Question } from './QAModels';
 const SERVER_URL = 'http://localhost:3001';
 
 const getQuestions = async () => {

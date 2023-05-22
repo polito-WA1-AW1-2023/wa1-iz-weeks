@@ -68,7 +68,7 @@ app.post('/api/questions/:id/answers', [
 
   try {
     const id = await dao.addAnswer(newAnswer, questionId);
-    res.status(201).location(id);
+    res.status(201).location(id).end();
   } catch(e) {
     console.error(`ERROR: ${e.message}`);
     res.status(503).json({error: 'Impossible to create the answer.'});
@@ -115,7 +115,6 @@ app.post('/api/answers/:id/vote', [
     else
       throw new Error(`Error in casting a vote for answer #${answerId}`);
   } catch(e) {
-    console.log(e.message)
     res.status(503).json({error: e.message});
   }
 });
