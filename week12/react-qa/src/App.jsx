@@ -61,7 +61,7 @@ function App() {
             <Route path='questions/:questionId' 
               element={<SingleQuestion questions={questions}/> } />
             <Route path='questions/:questionId/addAnswer' 
-              element={<AnswerForm addAnswer={addAnswer} lastId={Math.max(...answers.map(ans => ans.id))}/>} />
+              element={<AnswerForm />} />
             <Route path='questions/:questionId/editAnswer/:answerId' 
               element={<AnswerForm updateAnswer={updateAnswer} />} />
             <Route path='*' element={ <NotFound/> } />

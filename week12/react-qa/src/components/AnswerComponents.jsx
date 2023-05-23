@@ -74,7 +74,7 @@ function AnswerData(props) {
 
 function AnswerActions(props) {
   return <td>
-    <Link to={`editAnswer/${props.answer.id}`} className='btn btn-primary' state={props.answer.serialize()}><i className='bi bi-pencil-square'></i></Link> <Button variant='success' onClick={() => props.voteUp(props.answer.id)}><i className='bi bi-arrow-up'></i></Button>
+    <Link to={`editAnswer/${props.answer.id}`} className='btn btn-primary' state={props.answer.serialize()}><i className='bi bi-pencil-square'></i></Link> <Button variant='success' onClick={() => props.voteUp(props.answer.id)} disabled={props.answer.voted}><i className='bi bi-arrow-up'></i></Button>
     </td>
 }
 

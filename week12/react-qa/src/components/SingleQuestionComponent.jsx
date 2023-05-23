@@ -11,26 +11,34 @@ function SingleQuestion(props) {
   const question = props.questions[params.questionId-1];
   const [answers, setAnswers] = useState([]);
 
+  const getAnswers = async () => {
+    const answers = await API.getAnswers(params.questionId);
+    setAnswers(answers);
+  }
+
   useEffect(()=> {
     // get all the answers of this question from API
-    const getAnswers = async () => {
-      const answers = await API.getAnswers(params.questionId);
-      setAnswers(answers);
-    }
     getAnswers();
   }, []);
 
   const voteUp = (answerId) => {
+    // temporary update
     setAnswers(oldAnswer => {
       return oldAnswer.map((ans) => {
         if(ans.id === answerId) {
           // return the "updated" answer
-          return new Answer(ans.id, ans.text, ans.name, ans.date, ans.score +1);
+          const answer = new Answer(ans.id, ans.text, ans.name, ans.date, ans.score +1);
+          answer.voted = true;
+          return answer;
         }
         else
           return ans;
       });
     });
+
+    API.vote(answerId)
+      .then(() => getAnswers())
+      .catch(err => console.log(err));
   }
   
   return (
