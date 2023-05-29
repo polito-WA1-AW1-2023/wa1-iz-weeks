@@ -5,7 +5,7 @@ const express = require('express');
 const morgan = require('morgan');
 const {check, validationResult} = require('express-validator');
 const cors = require('cors');
-const dao = require('./dao');
+const dao = require('./qa-dao');
 
 // init
 const app = express();

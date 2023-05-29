@@ -12,7 +12,6 @@ import API from './API';
 
 function App() {
   const [questions, setQuestions] = useState([]);
-  const [answers, setAnswers] = useState([]);
 
   useEffect(()=> {
     // get all the questions from API
@@ -22,22 +21,6 @@ function App() {
     }
     getQuestions();
   }, []);
-
-  const addAnswer = (answer) => {
-    setAnswers((oldAnswers) => [...oldAnswers, answer]);
-  }
-
-  const updateAnswer = (answer) => {
-    setAnswers(oldAnswer => {
-      return oldAnswer.map((ans) => {
-        if(ans.id === answer.id) {
-          return new Answer(answer.id, answer.text, answer.name, answer.date, ans.questionId, answer.score);
-        }
-        else
-          return ans;
-      });
-    });
-  }
 
   return (
     <BrowserRouter>
@@ -63,7 +46,7 @@ function App() {
             <Route path='questions/:questionId/addAnswer' 
               element={<AnswerForm />} />
             <Route path='questions/:questionId/editAnswer/:answerId' 
-              element={<AnswerForm updateAnswer={updateAnswer} />} />
+              element={<AnswerForm />} />
             <Route path='*' element={ <NotFound/> } />
           </Route>
         </Routes>

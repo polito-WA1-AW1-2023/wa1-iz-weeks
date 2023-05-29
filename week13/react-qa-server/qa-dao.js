@@ -2,11 +2,7 @@
 /* Initial version taken from exercise 4 (week 03) */
 const sqlite = require('sqlite3');
 const {Question, Answer} = require('./QAModels');
-
-// open the database
-const db = new sqlite.Database('questions.sqlite', (err) => {
-  if (err) throw err;
-});
+const { db } = require('./db');
 
 /** QUESTIONS **/
 // get all the questions
