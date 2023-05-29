@@ -9,7 +9,7 @@ In particular, on the server:
 - Configure it to use sessions and the username/password strategy for login.
 - For hashing the password (to store it in the database), use `scrypt` as shown during the lecture.
 - Create a login and a logout route (e.g., `POST /api/sessions` for login).
-- Protect any suitable route so only logged-in and authorized users can call those APIs.
+- Protect any suitable route so only logged-in and authorized users can call those APIs. In particular, only logged-in user can vote the answers.
 
 Instead, on the React client:
 - Prepare a login form using controlled input components.
@@ -19,5 +19,5 @@ Instead, on the React client:
 - Verify that the entire application is still working as expected.
 
 An updated SQLite database, with a new `user` table, is available on the GitHub repository. The credentials for the only user available in the database are:
-- username: test@polito.it
+- username: luigi@polito.it
 - password: testtest
