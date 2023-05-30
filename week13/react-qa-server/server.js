@@ -29,7 +29,7 @@ app.use(cors(corsOptions));
 
 // Passport: set up local strategy
 passport.use(new LocalStrategy(async function verify(username, password, cb) {
-  const user = await userDao.getUser(username, password)
+  const user = await userDao.getUser(username, password);
   if(!user)
     return cb(null, false, 'Incorrect username or password.');
     
@@ -159,7 +159,6 @@ app.post('/api/answers/:id/vote', isLoggedIn, [
 });
 
 // POST /api/sessions
-/*
 app.post('/api/sessions', function(req, res, next) {
   passport.authenticate('local', (err, user, info) => {
     if (err)
@@ -177,13 +176,13 @@ app.post('/api/sessions', function(req, res, next) {
         return res.status(201).json(req.user);
       });
   })(req, res, next);
-});*/
+});
 
 /* If we aren't interested in sending error messages... */
-app.post('/api/sessions', passport.authenticate('local'), (req, res) => {
+/*app.post('/api/sessions', passport.authenticate('local'), (req, res) => {
   // req.user contains the authenticated user, we send all the user info back
   res.status(201).json(req.user);
-});
+});*/
 
 // GET /api/sessions/current
 app.get('/api/sessions/current', (req, res) => {
