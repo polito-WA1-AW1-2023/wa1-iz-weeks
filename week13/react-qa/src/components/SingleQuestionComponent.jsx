@@ -10,7 +10,7 @@ function SingleQuestion(props) {
   const params = useParams();
   const question = props.questions[params.questionId-1];
   const [answers, setAnswers] = useState([]);
-
+  
   const getAnswers = async () => {
     const answers = await API.getAnswers(params.questionId);
     setAnswers(answers);
@@ -46,7 +46,7 @@ function SingleQuestion(props) {
     {/* The check on "question" is needed to intercept errors due to invalid URLs (e.g., /questions/5 when you have two questions only) */}
     {question ? <>
       <QuestionDescription question={question} />
-      <Answers answers={answers} voteUp={voteUp}></Answers></> :
+      <Answers answers={answers} voteUp={voteUp} loggedIn={props.loggedIn}></Answers></> :
       <p className='lead'>The selected question does not exist!</p>
     } 
     </>

@@ -11,7 +11,7 @@ function Answers(props) {
       </Row>
       <Row>
         <Col lg={10} className="mx-auto">
-          <AnswerTable answers={props.answers} voteUp={props.voteUp} addAnswer={props.addAnswer} updateAnswer={props.updateAnswer}></AnswerTable>
+          <AnswerTable answers={props.answers} voteUp={props.voteUp} addAnswer={props.addAnswer} updateAnswer={props.updateAnswer} loggedIn={props.loggedIn}></AnswerTable>
         </Col> 
       </Row>
     </>
@@ -45,7 +45,7 @@ function AnswerTable(props) {
         </thead>
         <tbody>
           {
-            sortedAnswers.map((ans) => <AnswerRow answer={ans} key={ans.id} voteUp={props.voteUp}/>)
+            sortedAnswers.map((ans) => <AnswerRow answer={ans} key={ans.id} voteUp={props.voteUp} loggedIn={props.loggedIn}/>)
           }
         </tbody>
       </Table>
@@ -57,7 +57,7 @@ function AnswerTable(props) {
 
 function AnswerRow(props) {
   return(
-    <tr><AnswerData answer={props.answer}/><AnswerActions voteUp={props.voteUp} answer={props.answer}/></tr>
+    <tr><AnswerData answer={props.answer}/><AnswerActions voteUp={props.voteUp} answer={props.answer} loggedIn={props.loggedIn}/></tr>
   );
 }
 
@@ -74,7 +74,7 @@ function AnswerData(props) {
 
 function AnswerActions(props) {
   return <td>
-    <Link to={`editAnswer/${props.answer.id}`} className='btn btn-primary' state={props.answer.serialize()}><i className='bi bi-pencil-square'></i></Link> <Button variant='success' onClick={() => props.voteUp(props.answer.id)} disabled={props.answer.voted}><i className='bi bi-arrow-up'></i></Button>
+    <Link to={`editAnswer/${props.answer.id}`} className='btn btn-primary' state={props.answer.serialize()}><i className='bi bi-pencil-square'></i></Link> <Button variant='success' onClick={() => props.voteUp(props.answer.id)} disabled={props.answer.voted || !props.loggedIn}><i className='bi bi-arrow-up'></i></Button>
     </td>
 }
 
